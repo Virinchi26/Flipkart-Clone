@@ -19,6 +19,7 @@ font-size: unset;
 const SearchIconWrapper = styled(SearchIcon)`
 color: blue;
 padding: 5px;
+display: flex;
 
 `
 

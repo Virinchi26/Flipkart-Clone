@@ -1,21 +1,22 @@
-const express = require("express");
+import express from 'express';
+import connectDB from './db/connect.js';
+import dotenv from 'dotenv';
+
+import DefaultData from './default.js';
+
 const app = express();
-const port = process.env.PORT || 4000;
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
-const connectDB = require("./db/connect");
-const dotenv = require("dotenv");
-const router = require("./router/route");
 
 dotenv.config();
-app.use(cors());
-app.use(bodyParser.json());
 
-connectDB();
+const PORT = 8000
 
-app.use("/api", router);
+const USERNAME = process.env.DB_USERNAME;
+const PASSWORD = process.env.DB_PASSWORD;
 
-app.listen(port, () => {
-  console.log("Server is running on port: " + port);
-});
+connectDB(USERNAME, PASSWORD);
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+    });
+
+DefaultData();

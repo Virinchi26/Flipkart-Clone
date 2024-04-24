@@ -1,11 +1,22 @@
-const mongoose = require("mongoose");
-mongoose.set("strictQuery", true);
+// const mongoose = require("mongoose");
 
-const connectDB = async () => {
-  mongoose
-    .connect(process.env.MONGO_URL)
-    .then(() => console.log("MongoDb is connected"))
-    .catch((err) => console.log(err));
+import mongoose from "mongoose";
+
+const connectDB = async (username,password) => {
+    const URL = `mongodb+srv://${username}:${password}@cluster0.ijugoab.mongodb.net/ECommerence?retryWrites=true&w=majority&appName=Cluster0`;
+    try {
+        await mongoose.connect(URL, {
+            useNewUrlParser: true,
+            
+            useUnifiedTopology: true,
+        });
+        console.log("Database connected successfully");
+
+
+    } catch (error) {
+        console.log("Error while connecting to the database: ", error.message);
+
+    }
 };
 
-module.exports = connectDB;
+export default connectDB;
