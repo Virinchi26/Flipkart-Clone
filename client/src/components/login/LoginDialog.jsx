@@ -75,25 +75,24 @@ const CreateAccount = styled(Typography)`
 `;
 
 const Error = styled(Typography)`
-font-size:10px;
-color: #ff6161;
-line-height: 0;
-margin-top: 10px;
-font-weight: 600;
-`
-
+  font-size: 10px;
+  color: #ff6161;
+  line-height: 0;
+  margin-top: 10px;
+  font-weight: 600;
+`;
 
 const accountInitialValues = {
-  login:{
-    view: 'login',
+  login: {
+    view: "login",
     heading: "Login",
     subHeading: "Get access to your Orders, Wishlist and Recommendations",
   },
-  signup:{
-    view: 'signup',
-    heading: "Looks like you're new here!", 
+  signup: {
+    view: "signup",
+    heading: "Looks like you're new here!",
     subHeading: "Sign up with your mobile number to get started",
-  }
+  },
 };
 
 const signupInitialValues = {
@@ -110,10 +109,7 @@ const loginInitialValues = {
   password: "",
 };
 
-
 const LoginDialog = ({ open, setOpen }) => {
-
-
   const [account, toggleAccount] = useState(accountInitialValues.login);
 
   const [signup, setSignup] = useState(signupInitialValues);
@@ -121,13 +117,12 @@ const LoginDialog = ({ open, setOpen }) => {
 
   const [error, setError] = useState(false);
 
-
   //using context api here
-  const {setAccount} = useContext(DataContext);
+  const { setAccount } = useContext(DataContext);
 
   const toggleSignUp = () => {
     toggleAccount(accountInitialValues.signup);
-  }
+  };
 
   const handleClose = () => {
     setOpen(false);
@@ -138,35 +133,34 @@ const LoginDialog = ({ open, setOpen }) => {
   const onInputChange = (e) => {
     // console.log(e.target.value);
     setSignup({ ...signup, [e.target.name]: e.target.value });
-  }
+  };
 
   const signupUser = async () => {
     // since autheticateSignup is an async function, we need to use await
     let response = await authenticateSignup(signup);
-    if(!response) return;
+    if (!response) return;
 
     handleClose();
 
     //context api
     setAccount(signup.firstname);
-  }
+  };
 
   const onValueChange = (e) => {
     setLogin({ ...login, [e.target.name]: e.target.value });
-  }
+  };
 
   const loginUser = async () => {
     let response = await authenticateLogin(login);
     console.log(response);
-    if(!response) return;
-    if(response.status === 200){
+    if (!response) return;
+    if (response.status === 200) {
       handleClose();
       setAccount(response.data.data.firstname);
-    } else{
+    } else {
       setError(true);
-
     }
-  }
+  };
 
   return (
     <Dialog
@@ -185,23 +179,35 @@ const LoginDialog = ({ open, setOpen }) => {
           </Image>
           {account.view === "login" ? (
             <Wrapper>
-              <TextField variant="standard" onChange={(e) => onValueChange(e)} name="username" label="Enter Username"/>
-              
-              { error &&<Error>Please enter valid username or password</Error> }
-              
-              <TextField variant="standard" onChange={(e) => onValueChange(e)} name="password" label="Enter Password"/>
-              
+              <TextField
+                variant="standard"
+                onChange={(e) => onValueChange(e)}
+                name="username"
+                label="Enter Username"
+              />
+
+              {error && <Error>Please enter valid username or password</Error>}
+
+              <TextField
+                variant="standard"
+                onChange={(e) => onValueChange(e)}
+                name="password"
+                label="Enter Password"
+              />
+
               <Text>
                 By continuing, you agree to Flipkart's Terms of Use and Privacy
                 Policy{" "}
               </Text>
-              
-              <LoginButton variant="contained" onClick={()=> loginUser() } >Login</LoginButton>
-              
+
+              <LoginButton variant="contained" onClick={() => loginUser()}>
+                Login
+              </LoginButton>
+
               <Typography style={{ textAlign: "center" }}>OR</Typography>
-              
+
               <RequestOTP variant="contained">Request OTP</RequestOTP>
-              
+
               <CreateAccount onClick={() => toggleSignUp()}>
                 New to Flipkart? Create an account
               </CreateAccount>
@@ -253,6 +259,6 @@ const LoginDialog = ({ open, setOpen }) => {
       </Component>
     </Dialog>
   );
-}
+};
 
 export default LoginDialog;

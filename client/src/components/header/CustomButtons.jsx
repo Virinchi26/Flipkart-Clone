@@ -51,11 +51,14 @@ const CustomButtons = () => {
 
   return (
     <Wrapper>
-      {
-      account ? <Profile account={account} setAccount={setAccount} />
-       : 
-        <LoginButton variant="contained" onClick={() => openDialog()}> Login </LoginButton>
-      }
+      {account ? (
+        <Profile account={account} setAccount={setAccount} />
+      ) : (
+        <LoginButton variant="contained" onClick={() => openDialog()}>
+          {" "}
+          Login{" "}
+        </LoginButton>
+      )}
 
       <Typography style={{ marginTop: 3, width: 135 }}>
         Become a Seller
