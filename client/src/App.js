@@ -2,7 +2,7 @@
 import './App.css';
 import Header from './components/header/Header';
 import Home from './components/home/Home';
-
+import React from 'react';
 import DataProvider from './context/DataProvider';
 
 import {Box} from '@mui/material';

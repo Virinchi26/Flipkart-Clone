@@ -3,14 +3,15 @@ import Carousel from "react-multi-carousel";
 import { bannerData } from "../../constants/data";
 import {styled} from "@mui/material";
 import "react-multi-carousel/lib/styles.css";
+const Image = styled('img')(({ theme })=>({
 
-
-const Image = styled('img')`
-
-    width: 100%;
-    height: 280px;
-    object-fit: cover;
-`
+    width: '100%',
+    height: 280,
+    [theme.breakpoints.down('md')]: {
+        objectFit: 'cover',
+        height: 180
+    }
+}));
 
 const responsive = {
 

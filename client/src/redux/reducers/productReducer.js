@@ -1,4 +1,3 @@
-import { act } from "react";
 import * as actionTypes from "../constants/productConstant";
 
 export const getProductsReducer = (state = { products: [] }, action) => {

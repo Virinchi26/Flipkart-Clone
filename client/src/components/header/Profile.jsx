@@ -1,5 +1,5 @@
 import { Box, Typography, Menu, MenuItem, styled } from "@mui/material";
-import { useState } from "react";
+import React,{ useState } from "react";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 
 const Component = styled(Menu)`
