@@ -7,15 +7,23 @@ import DataProvider from './context/DataProvider';
 
 import {Box} from '@mui/material';
 
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import DetailView from './components/details/DetailView';
+
 function App() {
   return (
     //replace div with DataProvider, so that I can use the states of the dataprovider insider the components mentioned i.e Header, Home, etc
     <DataProvider>
-      <Header />
-      <Box style={{marginTop: 54}}>
-        <Home />
+      <BrowserRouter>
+        <Header />
+        <Box style={{ marginTop: 54 }}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path='/product/:id' element={<DetailView />} />
 
-      </Box>
+          </Routes>
+        </Box>
+      </BrowserRouter>
     </DataProvider>
   );
 }
