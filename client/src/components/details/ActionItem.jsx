@@ -18,6 +18,7 @@ const StyledButton = styled(Button)`
     width: 48%;
     height: 50px;
     border-radius: 2px;
+    margin-top: 20px;
 `
 
 const ActionItem =({product}) =>{

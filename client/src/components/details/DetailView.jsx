@@ -74,7 +74,7 @@ const DetailView = () => {
               </Box>
               &nbsp;
               <Box component="span" style={{ color: "#388E3C" }}>
-                {product.price.discount}
+                {product.price.discount} off
               </Box>
             </Typography>
           </RightContainer>
