@@ -10,20 +10,26 @@ import { Box, Typography,Grid, styled } from "@mui/material";
 
 import ActionItem from "./ActionItem";
 
+import ProductDetail from "./ProductDetail";
+
 
 const Component = styled(Box)`
     background: #F2F2F2;
     margin-top: 55px;
 `;
 
-const Container = styled(Grid)`
-    background: #FFFFFF;
-    display: flex;
+const Container = styled(Grid)(({ theme }) => ({
+    background: '#FFFFFF',
+    display: 'flex',
+    [theme.breakpoints.down('md')]: {
+      margin: '0px',
+    },
 
-`;
+}));
 
 const RightContainer = styled(Grid)`
     margin-top: 50px;
+    padding: 0 20px;
 `;
 
 const DetailView = () => {
@@ -31,9 +37,6 @@ const DetailView = () => {
   const { id } = useParams(); // id is the key in the url which I have passed in the App.js "/product/:id"
 
   const { loading, product } = useSelector((state) => state.getProductDetails);
-
-  const fassured =
-    "https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/fa_62673a.png";
 
 
   useEffect(() => {
@@ -55,28 +58,8 @@ const DetailView = () => {
 
           {/* right side container  */}
           <RightContainer item lg={8} md={4} sm={8} xs={12}>
-            <Typography>{product.title.longTitle}</Typography>
-            <Typography
-              style={{ marginTop: 5, color: "#878787", fontSize: 14 }}
-            >
-              8 Ratings & 1 Reviews
-              <Box component="span">
-                <img src={fassured} style={{ width: 77, marginLeft: 20 }} />
-              </Box>
-            </Typography>
-            <Typography>
-              <Box component="span" style={{ fontSize: 28 }}>
-                ₹{product.price.cost}
-              </Box>
-              &nbsp;
-              <Box component="span" style={{ color: "#878787" }}>
-                <strike>{product.price.mrp}</strike>
-              </Box>
-              &nbsp;
-              <Box component="span" style={{ color: "#388E3C" }}>
-                {product.price.discount} off
-              </Box>
-            </Typography>
+            
+            <ProductDetail product={product} />
           </RightContainer>
         </Container>
       )}
