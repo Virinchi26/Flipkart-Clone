@@ -4,9 +4,12 @@ import Slide from "./Slide";
 
 const Component = styled(Box)`
     display: flex;
+    width: 100%;
+    overflow: hidden'
     `
 const LeftComponent = styled(Box)(({theme}) => ({
-    width: '88%',
+    width: '83%',
+    boxSizing: 'border-box',
     [theme.breakpoints.down('md')]: {
         width: '100%',
     }
@@ -16,8 +19,9 @@ const RightComponent = styled(Box)(({theme}) => ({
     padding: 5,
     marginTop: 10,
     marginLeft: 10,
-    width: '12%',
+    width: '17%',
     textAlign: 'center',
+    boxSizing: 'border-box',
     [theme.breakpoints.down('md')]: {
         display: 'none',
     }
